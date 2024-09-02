@@ -1,0 +1,20 @@
+Create an app where a user can generate a canvas setting the width and height dimensions and the colour (black or white).
+The user is then able to add different shapes to it in different sizes and colours
+
+Canvas:
+    width
+    height
+    colour
+
+Rectangle:
+    x
+    y
+    width
+    height
+    red
+    green
+    blue
+    draw()
+
+Square(Rectangle)
+    
