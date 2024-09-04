@@ -1,65 +1,6 @@
-import os
-import webbrowser
-import numpy as np
-from PIL import Image
-
-class Canvas:
-    """
-    Defines the canvas dimension and colour (black or white).
-    """
-    def __init__(self, width, height, colour):
-        self.width = width
-        self.height = height
-        self.colour = colour
-        
-    def draw(self):
-        canvas = np.zeros((self.height, self.width, 3), dtype=np.uint8)
-        if self.colour == "black": 
-            canvas[:] = [0, 0, 0]
-        else:
-            canvas[:] = [255, 255, 255]
-        return canvas
-
-
-class Rectangle:
-    """
-    Rectangle shape defined given x and y coordinates, 
-    dimensions and colour in RGB format.
-    """
-    def __init__(self, x, y, width, height, red, green, blue):
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.red = red
-        self.green = green
-        self.blue = blue
-    
-    def draw(self, canvas):
-        canvas[self.y:self.y + self.height, self.x:self.x + self.width] = [self.red, self.green, self.blue]
-        pillow_image = Image.fromarray(canvas, "RGB")
-        
-        return canvas, pillow_image
-
-
-class Square(Rectangle):
-    """
-    Square shape which is a particular rectangle.
-    """
-    def __init__(self, x, y, width, red, green, blue):
-        super().__init__(x, y, width, width, red, green, blue)
-        
-        
-class SaveImage:
-    def __init__(self, filename):
-        self.filename = filename
-        
-    def save(self, pillow_image):
-        
-        pillow_image.save(f"files/{self.filename}.png")
-        
-        webbrowser.open("file://" + os.path.realpath(f"files/{self.filename}"))
-
+from canvas import Canvas
+from rectangle import Rectangle, Square
+from save_image import SaveImage
 
 canvas_width = int(input("Enter canvas width: "))
 canvas_height = int(input("Enter canvas height: "))
@@ -72,11 +13,9 @@ running = True
 while running:
     shape_to_draw = input("What shape would you like to draw (square or rectangle)? Enter quit to exit when you are done. :) ")
     if shape_to_draw == "quit":
-        
         filename = input("Enter filename for the image: ")
         save_image = SaveImage(filename)
         save_image.save(pillow_image)
-        
         running = False
         
         continue

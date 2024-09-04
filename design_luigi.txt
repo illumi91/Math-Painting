@@ -14,7 +14,7 @@ Rectangle:
     red
     green
     blue
-    draw()
+    draw(canvas)
 
 Square(Rectangle)
     
