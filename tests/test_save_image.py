@@ -1,5 +1,5 @@
 import os
-from save_image import SaveImage
+from render_image import SaveImage
 from unittest import mock
 import pytest 
 

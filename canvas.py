@@ -1,3 +1,5 @@
+
+from PIL import Image
 import numpy as np
 
 class Canvas:
@@ -9,13 +11,14 @@ class Canvas:
         self.height = height
         self.colour = colour
         
-    def draw(self):
-        canvas = np.zeros((self.height, self.width, 3), dtype=np.uint8)
+        self.canvas = np.zeros((self.height, self.width, 3), dtype=np.uint8)
         if self.colour == "black": 
-            canvas[:] = [0, 0, 0]
+            self.canvas[:] = [0, 0, 0]
         elif self.colour == "white":
-            canvas[:] = [255, 255, 255]
+            self.canvas[:] = [255, 255, 255]
         else: 
             raise ValueError(f"Invalid color: {self.colour}. Only 'black' and 'white' are allowed")
-        
-        return canvas
+
+    def make(self, filename):
+        pillow_image = Image.fromarray(self.canvas, "RGB")
+        pillow_image.save(f"files/{filename}.png")
