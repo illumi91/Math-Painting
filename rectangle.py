@@ -6,7 +6,7 @@ class Rectangle:
     Rectangle shape defined given x and y coordinates, 
     dimensions and colour in RGB format.
     """
-    def __init__(self, x: float, y: float, width: float, height: float, colour: tuple):
+    def __init__(self, x: int, y: int, width: int, height: int, colour: tuple):
         self.x = x
         self.y = y
         self.width = width
